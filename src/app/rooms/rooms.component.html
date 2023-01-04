@@ -1,16 +1,35 @@
 <div class="content">
-  <h2>IT255 - DZ06 - Marko Josifović 4494</h2>
+  <h2>Dodavanje sobe</h2>
   <div>
-    <form>
-      <label for="roomNumber">Room number:</label><br>
-      <input type="text" id="roomNumber" name="roomNumber" #roomNumber><br>
-      <label for="floor">Floor:</label><br>
-      <input type="text" id="floor" name="floor" #floor><br>
-      <label for="description">Description:</label><br>
-      <input type="text" id="description" name="description" #description><br>
-      <label for="price">Price:</label><br>
-      <input type="number" id="price" name="price" #price><br><br>
-      <button type="submit" (click)="addRoom(roomNumber, floor, description, price)">Submit</button>
+    <form [formGroup]="roomForm">
+      <label>Broj sobe:</label><br>
+      <input type="number" #roomNumber formControlName="roomNumber" required><br>
+      <label>Sprat:</label><br>
+      <input type="number" #floor formControlName="floor" required><br>
+      <label>Opis:</label><br>
+      <input type="text"
+             #description
+             formControlName="description" required (ngModelChange)="checkDescription(description.value)"><br>
+      <div *ngIf="isControlDirty('description') && !this.descriptionValid">
+        <span>Opis mora imati bar 6 karaktera!</span><br>
+      </div>
+      <label>Cena:</label><br>
+      <input type="number" #price formControlName="price" required><br><br>
+      <div *ngFor="let option of optionList, let i = index">
+        <label>{{ option.name }}</label>
+        <input type="checkbox"
+               (ngModelChange)="option.checked = $event"
+               formControlName="option">
+        <div *ngIf="option.checked">
+          <span>Račun će biti uvećan za {{option.price}} dolara.</span><br>
+        </div>
+      </div>
+      <br>
+      <button
+        [disabled]="roomForm.invalid"
+        (click)="addRoom(roomNumber, floor, description, price)">
+        Submit
+      </button>
     </form>
   </div>
   <div>

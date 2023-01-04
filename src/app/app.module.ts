@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OfferComponent } from './offer/offer.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { AboutComponent } from './about/about.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,10 +19,11 @@ import { AboutComponent } from './about/about.component';
     RecommendationComponent,
     AboutComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
