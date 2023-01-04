@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Room} from "../models/room.model";
 
 @Component({
@@ -14,8 +14,6 @@ export class RoomsComponent {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
 
   addRoom(roomNumber: HTMLInputElement, floor: HTMLInputElement, description: HTMLInputElement, price: HTMLInputElement): boolean {
     this.rooms.push(new Room(parseInt(roomNumber.value), description.value, parseFloat(price.value), parseInt(floor.value)));
