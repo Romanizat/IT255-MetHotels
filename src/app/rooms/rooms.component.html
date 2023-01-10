@@ -25,6 +25,8 @@
         </div>
       </div>
       <br>
+      <label>Broj noći:</label><br>
+      <input type="number" #numberOfNights formControlName="numberOfNights" required><br>
       <button
         [disabled]="roomForm.invalid"
         (click)="addRoom(roomNumber, floor, description, price)">

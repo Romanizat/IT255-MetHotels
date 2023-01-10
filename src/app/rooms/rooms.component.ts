@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Room} from "../models/room.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {RoomServiceService} from "../services/room-service.service";
 
 @Component({
   selector: 'app-rooms',
@@ -11,8 +12,13 @@ export class RoomsComponent {
   rooms: Room[] = [];
   descriptionValid = false;
 
+
+  constructor(private roomService: RoomServiceService) {
+  }
+
   roomForm = new FormGroup({
     roomNumber: new FormControl(null, Validators.required),
+    numberOfNights: new FormControl(null, Validators.required),
     floor: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
     price: new FormControl(null, Validators.required),
@@ -32,6 +38,10 @@ export class RoomsComponent {
       if (option.checked) {
         finalPrice += option.price;
       }
+    }
+    const numberOfNights = this.roomForm?.get('numberOfNights')?.value;
+    if (numberOfNights != null) {
+      finalPrice = this.roomService.getPrice(numberOfNights, finalPrice);
     }
     this.rooms.push(new Room(parseInt(roomNumber.value), description.value, finalPrice, parseInt(floor.value)));
     this.roomForm.reset();
