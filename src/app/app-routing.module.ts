@@ -7,6 +7,7 @@ import {RoomsComponent} from "./rooms/rooms.component";
 
 
 const routes: Routes = [
+  // Routing je implementiran na projektu
   {path: "offers", component: OfferComponent},
   {path: "recommendations", component: RecommendationComponent},
   {path: "about", component: AboutComponent},
