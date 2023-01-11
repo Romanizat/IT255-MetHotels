@@ -18,6 +18,7 @@
       <div *ngFor="let option of optionList, let i = index">
         <label>{{ option.name }}</label>
         <input type="checkbox"
+               [checked]="option.checked"
                (ngModelChange)="option.checked = $event"
                formControlName="option">
         <div *ngIf="option.checked">
@@ -48,6 +49,18 @@
         <th>{{room.floor}}</th>
         <th>{{room.description}}</th>
         <th>{{room.price}}</th>
+        <th>
+          <button
+            (click)="editRoom(room)">
+            Edit
+          </button>
+        </th>
+        <th>
+          <button
+            (click)="deleteRoom(room.id)">
+            Delete
+          </button>
+        </th>
       </tr>
     </table>
   </div>
