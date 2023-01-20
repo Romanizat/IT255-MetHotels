@@ -8,6 +8,8 @@ export class Room {
   airCondition: boolean;
   miniBar: boolean;
 
+  // Entitet Room je predstavljen kao model u Angular aplikaciji.
+
 
   constructor(roomNumber: number, description: string, price: number, floor: number, sauna: boolean, airCondition: boolean, minibar: boolean) {
     this.roomNumber = roomNumber;

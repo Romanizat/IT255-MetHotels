@@ -71,6 +71,7 @@ export class RoomsComponent implements OnInit {
     return this.roomForm.get(controlName).dirty;
   }
 
+  // Pregled soba kroz poglede (views) putem servisa.
   getAllRooms() {
     this.roomService.getAllRooms().toPromise().then(data => {
       this.rooms = data;
